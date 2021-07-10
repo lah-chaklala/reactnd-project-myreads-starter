@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 // import * as BooksAPI from '../BooksAPI'
 import '../App.css'
+
 import { Link } from 'react-router-dom'
-class Reads extends Component {
+
+
+class Search extends Component {
 
   render() {
     return (
-      <div >
-        <p>Reads</p>
+      <div>
+        <p>Search</p>
         <Link to="/"> go to Home </Link>
         <Link to="/search"> go to Search </Link>
       </div>
@@ -15,4 +18,4 @@ class Reads extends Component {
   }
 }
 
-export default Reads
+export default Search
