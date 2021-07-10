@@ -6,11 +6,11 @@ class Book extends Component {
     
   render() {
     const { book, shelf, onChangeShelf } = this.props;
-    // console.log(book);
+    // console.log(book)
     return (
         <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.previewLink}")` }}></div>
+          <div className="book-cover" style={{ width: 200, height: 200, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
           <div className="book-shelf-changer">
             <select onChange={(event) => onChangeShelf(event.target.value)} value={ shelf }>
               <option value="move" disabled>Move to...</option>
