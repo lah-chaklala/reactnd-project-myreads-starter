@@ -6,7 +6,7 @@ class Book extends Component {
     
   render() {
     const { book, shelf, onChangeShelf } = this.props;
-    console.log(book);
+    // console.log(book);
     return (
         <div className="book">
         <div className="book-top">

@@ -29,11 +29,12 @@ class BooksApp extends Component {
   }
  
   onChangeShelf = (book, newValue) => {
+    console.log("update book " + book.title + " to " + newValue);
     book.shelf = newValue;
-    let newBook = this.state.bookshelves
-    if (newBook.filter(e => e.id === book.id).length > 0) {
-      newBook = newBook.map((e) => {
-        e.shelf = newValue;
+    let newBook = []
+    if (this.state.bookshelves.find(e => e.id === book.id)) {
+      newBook = this.state.bookshelves.map((e) => {
+        if (e.id === book.id) e.shelf = newValue;
         return e;
       }) 
     } else {
@@ -52,12 +53,13 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={() => (
-            <Reads bookshelves={this.state.bookshelves} onChangeShelf={this.onChangeShelf}/>
-          )
+        <Route exact path="/" render={(props) => {
+          // console.log(props);
+            return (<Reads bookshelves={this.state.bookshelves} onChangeShelf={this.onChangeShelf} history={props.history}/>)
+          }
         }/>
-        <Route exact path="/search" render={() => (
-            <Search bookshelves={this.state.bookshelves} onChangeShelf={this.onChangeShelf}/>
+        <Route exact path="/search" render={(props) => (
+            <Search bookshelves={this.state.bookshelves} onChangeShelf={this.onChangeShelf} history={props.history}/>
           )
         }/>
       </div>

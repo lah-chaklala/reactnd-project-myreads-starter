@@ -6,12 +6,9 @@ import Book from './Book'
 class ListBooks extends Component {
 
     getShelf = (id) => {
-        if (this.props.bookshelves.filter(e => e.id === id).length > 0) {
-            this.props.bookshelves.forEach(book => {
-                if (book.id === id) {
-                    return book.shelf;
-                }
-            });
+        const found = this.props.bookshelves.find(e => e.id === id);
+        if (found) {
+            return found.shelf;
         } else return "none";
     }
 
