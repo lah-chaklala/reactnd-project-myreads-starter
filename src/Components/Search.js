@@ -18,6 +18,7 @@ class Search extends Component {
         searchValue: newValue,
     });
 
+
     BooksAPI.search(this.state.searchValue).then((books) => {
         if (Array.isArray(books)) {
             books = books || []
@@ -49,7 +50,7 @@ class Search extends Component {
             </div>
             
             <div className="search-books-results">
-              <ListBooks books={this.state.books}/>
+              <ListBooks books={this.state.books} bookshelves={this.props.bookshelves} onChangeShelf={this.props.onChangeShelf}/>
             </div>
           </div>        
       </div>
