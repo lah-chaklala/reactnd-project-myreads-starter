@@ -1,55 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../App.css'
 import ListBooks from './ListBooks';
+import { Link } from 'react-router-dom'
 
-class Reads extends Component {
+const Reads = (props)  => {
+  const shelves = [
+    { title: 'Currently Reading', key: 'currentlyReading' },
+    { title: 'Want To Read', key: 'wantToRead' },
+    { title: 'Read', key: 'read' },
     
-    
-    addBookHandle = () => {
-        console.log("add book clicked");
-        console.log("go to /search");        
-        this.props.history.push('/search');
-    }
-
-  render() {
-    const wantToRead = this.props.bookshelves.filter((bk) => bk.shelf === "wantToRead");
-    const currentlyReading = this.props.bookshelves.filter((bk) => bk.shelf === "currentlyReading");
-    const read = this.props.bookshelves.filter((bk) => bk.shelf === "read");
-
-    return (
-        <div className="list-books">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
-        <div className="list-books-content">
-          <div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Currently Reading</h2>
+  ];
+  return (
+      <div className="list-books">
+      <div className="list-books-title">
+        <h1>MyReads</h1>
+      </div>
+      <div className="list-books-content">
+        <div>
+          {
+            shelves.map((shelf) => (
+              <div className="bookshelf">
+              <h2 className="bookshelf-title">{shelf.title}</h2>
               <div className="bookshelf-books">
-                <ListBooks books={currentlyReading} bookshelves={this.props.bookshelves} onChangeShelf={this.props.onChangeShelf}/>
+                <ListBooks books={props.bookshelves.filter((bk) => bk.shelf === shelf.key)} bookshelves={props.bookshelves} onChangeShelf={props.onChangeShelf}/>
               </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to Read</h2>
-              <div className="bookshelf-books">
-              <ListBooks books={wantToRead} bookshelves={this.props.bookshelves} onChangeShelf={this.props.onChangeShelf}/>
               </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-              <ListBooks books={read} bookshelves={this.props.bookshelves} onChangeShelf={this.props.onChangeShelf}/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="open-search">
-          <button onClick={this.addBookHandle}>Add a book</button>
+            ))
+          }
         </div>
       </div>
-    
-    )
-  }
-}
+      <div className="open-search">
+        <Link to="/search"> <button>Add a book</button> </Link>
+      </div>
+    </div>
+  
+  )
+};
 
 export default Reads

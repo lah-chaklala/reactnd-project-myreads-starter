@@ -30,23 +30,22 @@ class BooksApp extends Component {
  
   onChangeShelf = (book, newValue) => {
     console.log("update book " + book.title + " to " + newValue);
-    book.shelf = newValue;
-    let newBook = []
-    if (this.state.bookshelves.find(e => e.id === book.id)) {
-      newBook = this.state.bookshelves.map((e) => {
-        if (e.id === book.id) e.shelf = newValue;
-        return e;
-      }) 
-    } else {
-      newBook.push(book);
-    }
-
-    this.setState({
-      bookshelves: newBook
-    })
     
     BooksAPI.update({id: book.id}, newValue).then((res) => {
-      console.log(res);
+      book.shelf = newValue;
+      let newBook = []
+      if (this.state.bookshelves.find(e => e.id === book.id)) {
+        newBook = this.state.bookshelves.map((e) => {
+          if (e.id === book.id) e.shelf = newValue;
+          return e;
+        }) 
+      } else {
+        newBook.push(book);
+      }
+  
+      this.setState({
+        bookshelves: newBook
+      })
     })
   }
 
@@ -60,6 +59,10 @@ class BooksApp extends Component {
         }/>
         <Route exact path="/search" render={(props) => (
             <Search bookshelves={this.state.bookshelves} onChangeShelf={this.onChangeShelf} history={props.history}/>
+          )
+        }/>
+        <Route render={(props) => (
+            <h2>404 Not Found</h2>
           )
         }/>
       </div>
