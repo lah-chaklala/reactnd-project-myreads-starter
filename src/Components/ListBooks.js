@@ -14,13 +14,12 @@ class ListBooks extends Component {
 
   render() {
     const { books, onChangeShelf } = this.props;
-
     return (
         <ol className="books-grid">
             {
                 books.map((book) => (
                     <li key={book.id}>    
-                        <Book book={book} shelf={this.getShelf(book.id)} onChangeShelf={(newValue) => onChangeShelf(book, newValue)}></Book>
+                        <Book book={book} title={book.title} authors={book.authors} urlBackgroundImage={book.imageLinks.thumbnail} shelf={this.getShelf(book.id)} onChangeShelf={(newValue) => onChangeShelf(book, newValue)}></Book>
                     </li>
                 ))
             }

@@ -5,12 +5,12 @@ import '../App.css'
 class Book extends Component {
     
   render() {
-    const { book, shelf, onChangeShelf } = this.props;
-    // console.log(book)
+    const { shelf, onChangeShelf, title, authors, urlBackgroundImage } = this.props;
+    console.log(shelf, title, authors, urlBackgroundImage)
     return (
         <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 200, height: 200, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+          <div className="book-cover" style={{ width: 200, height: 200, backgroundImage: `url("${urlBackgroundImage}")` }}></div>
           <div className="book-shelf-changer">
             <select onChange={(event) => onChangeShelf(event.target.value)} value={ shelf }>
               <option value="move" disabled>Move to...</option>
@@ -21,8 +21,8 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{ book.title }</div>
-        <div className="book-authors">{ book.authors }</div>
+        <div className="book-title">{ title }</div>
+        <div className="book-authors">{ authors }</div>
       </div>
     )
   }

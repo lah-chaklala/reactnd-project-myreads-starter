@@ -27,7 +27,11 @@ class Search extends Component {
             this.setState({
                 books: books
             })
-        }
+        } else {
+          this.setState({
+            books: []
+          })
+        } 
 
     });
   }
